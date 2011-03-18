@@ -6,19 +6,25 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class AbstractResponseFactory
 {
-    protected $filename;
+    protected $baseDir;
+    protected $fullFilename;
     protected $contentType;
     protected $options;
 
+    public function __construct($baseDir)
+    {
+        $this->baseDir = $baseDir;
+    }
+
     public function create($filename, $contentType = 'application/octet-stream', $options = array())
     {
-        if (!is_readable($filename)) {
-            throw new \InvalidArgumentException(sprintf("Provided filename '%s' for %s is not readable.", $filename, __METHOD__));
-        }
-
-        $this->filename = $filename;
+        $this->fullFilename = $this->baseDir . '/' . $filename;
         $this->contentType = $contentType;
         $this->options = $options;
+
+        if (!is_readable($this->fullFilename)) {
+            throw new \InvalidArgumentException(sprintf("Provided filename '%s' for %s is not readable.", $this->fullFilename, __METHOD__));
+        }
 
         $this->parseOptions();
 
@@ -30,7 +36,7 @@ abstract class AbstractResponseFactory
 
     protected function parseOptions()
     {
-        $this->options['serve_filename'] = isset($this->options['serve_filename']) ? $this->options['serve_filename'] : basename($this->filename);
+        $this->options['serve_filename'] = isset($this->options['serve_filename']) ? $this->options['serve_filename'] : basename($this->fullFilename);
         $this->options['inline'] = isset($this->options['inline']) ? (Bool) $this->options['inline'] : true;
     }
 

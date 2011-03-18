@@ -10,7 +10,7 @@ class SendfileResponseFactory extends AbstractResponseFactory
     {
         parent::setResponseHeaders($response);
 
-        // $response->headers->set('X-Accel-Redirect', realpath($this->filename));
-        $response->headers->set('X-Accel-Redirect', $this->filename);
+        // $response->headers->set('X-Accel-Redirect', realpath($this->fullFilename));
+        $response->headers->set('X-Accel-Redirect', $this->fullFilename);
     }
 }

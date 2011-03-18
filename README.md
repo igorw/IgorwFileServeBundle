@@ -30,7 +30,7 @@ Add the FileServeBundle to your application's kernel:
 
 ## Usage
 
-Use the `igorw.file_serve.response.factory` service to create a FileServe response.
+Use the `igorw.file_serve.response.factory` service to create a FileServe response. The path is relative to the `app` directory.
 
     $response = $this->get('igorw.file_serve.response.factory')->create('../VERSION', 'text/plain');
 
@@ -46,7 +46,6 @@ You can adjust the `igorw.file_serve.response.factory.class` parameter, for exam
 
 ## Todo
 
-* Base path (maybe %kernel.dir%, currently paths are relative to webroot)
 * DependencyInjection Extension configuration
 * Tests
 * HTTP caching

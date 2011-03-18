@@ -9,7 +9,7 @@ class PhpResponseFactory extends AbstractResponseFactory
     protected function createResponse()
     {
         $response = new PhpResponse();
-        $response->setFilename($this->filename);
+        $response->setFilename($this->fullFilename);
         return $response;
     }
 
@@ -17,6 +17,6 @@ class PhpResponseFactory extends AbstractResponseFactory
     {
         parent::setResponseHeaders($response);
 
-        $response->headers->set('Content-Length', filesize($this->filename));
+        $response->headers->set('Content-Length', filesize($this->fullFilename));
     }
 }

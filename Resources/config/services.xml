@@ -9,6 +9,8 @@
     </parameters>
 
     <services>
-        <service id="igorw.file_serve.response.factory" class="%igorw.file_serve.response.factory.class%" />
+        <service id="igorw.file_serve.response.factory" class="%igorw.file_serve.response.factory.class%">
+            <argument>%kernel.root_dir%</argument>
+        </service>
     </services>
 </container>
