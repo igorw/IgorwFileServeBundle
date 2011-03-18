@@ -2,6 +2,8 @@
 
 namespace Igorw\FileServeBundle\Response;
 
+use Symfony\Component\HttpFoundation\Response;
+
 class PhpResponseFactory extends AbstractResponseFactory
 {
     protected function createResponse()
