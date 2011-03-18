@@ -47,7 +47,6 @@ You can adjust the `igorw.file_serve.response.factory.class` parameter, for exam
 ## Todo
 
 * Base path (maybe %kernel.dir%, currently paths are relative to webroot)
-* XML service configuration
 * DependencyInjection Extension configuration
 * Tests
 * HTTP caching
