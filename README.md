@@ -6,14 +6,14 @@ The FileServeBundle allows you to serve files that are not publicly available, s
 
 ## Installation
 
-Put the FileServeBundle into the src/Igorw directory:
+Put the FileServeBundle into the ``vendor/bundles/Igorw`` directory:
 
-    $ git clone git://github.com/igorw/FileServeBundle.git src/Igorw
+    $ git clone git://github.com/igorw/FileServeBundle.git vendor/bundles/Igorw
 
 Register the `Igorw` namespace in your project's autoload script (app/autoload.php):
 
     $loader->registerNamespaces(array(
-        'Igorw'                          => __DIR__.'/../src',
+        'Igorw'                          => __DIR__.'/../vendor/bundles',
     ));
 
 Add the FileServeBundle to your application's kernel:
@@ -30,14 +30,14 @@ Add the FileServeBundle to your application's kernel:
 
 ## Usage
 
-Use the `igorw.file_serve.response.factory` service to create a FileServe response. The path is relative to the `app` directory.
+Use the `igorw_file_serve.response_factory` service to create a FileServe response. The path is relative to the `app` directory.
 
-    $response = $this->get('igorw.file_serve.response.factory')->create('../VERSION', 'text/plain');
+    $response = $this->get('igorw_file_serve.response_factory')->create('../VERSION', 'text/plain');
 
-You can adjust the `igorw.file_serve.response.factory.class` parameter, for example to use a nginx XSendfile response factory:
+You can configure the factory used, for example to use a nginx XSendfile response factory:
 
-    parameters:
-        igorw.file_serve.response.factory.class: Igorw\FileServeBundle\Response\SendfileResponseFactory
+    igorw_file_serve:
+        factory: sendfile     # The default value is "php"
 
 ## Features
 
@@ -46,7 +46,6 @@ You can adjust the `igorw.file_serve.response.factory.class` parameter, for exam
 
 ## Todo
 
-* DependencyInjection Extension configuration
 * Tests
 * HTTP caching
 * HTTP range requests

@@ -13,10 +13,9 @@ class IgorwFileServeExtension extends Extension
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
-    }
 
-    public function getAlias()
-    {
-        return 'igorw_file_serve';
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+        $container->setAlias('igorw_file_serve.response_factory', sprintf('igorw_file_serve.response_factory.%s', $config['factory']));
     }
 }
