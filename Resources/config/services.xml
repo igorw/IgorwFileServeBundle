@@ -5,11 +5,15 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="igorw.file_serve.response.factory.class">Igorw\FileServeBundle\Response\PhpResponseFactory</parameter>
+        <parameter key="igorw_file_serve.response_factory.php.class">Igorw\FileServeBundle\Response\PhpResponseFactory</parameter>
+        <parameter key="igorw_file_serve.response_factory.sendfile.class">Igorw\FileServeBundle\Response\SendfileResponseFactory</parameter>
     </parameters>
 
     <services>
-        <service id="igorw.file_serve.response.factory" class="%igorw.file_serve.response.factory.class%">
+        <service id="igorw_file_serve.response_factory.php" class="%igorw_file_serve.response_factory.php.class%" public="false">
+            <argument>%kernel.root_dir%</argument>
+        </service>
+        <service id="igorw_file_serve.response_factory.sendfile" class="%igorw_file_serve.response_factory.sendfile.class%" public="false">
             <argument>%kernel.root_dir%</argument>
         </service>
     </services>
