@@ -1,0 +1,20 @@
+{
+    "name": "igorw/file-serve-bundle",
+    "description": "Symfony2 Bundle for serving protected files.",
+    "keywords": ["file-system", "sendfile"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Igor Wiedler",
+            "email": "igor@wiedler.ch"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": "2.*"
+    },
+    "autoload": {
+        "psr-0": { "Igorw\\FileServeBundle": "" }
+    },
+    "target-dir": "Igorw/FileServeBundle"
+}
