@@ -11,10 +11,10 @@
 
     <services>
         <service id="igorw_file_serve.response_factory.php" class="%igorw_file_serve.response_factory.php.class%" public="false">
-            <argument>%kernel.root_dir%</argument>
+            <argument>%igorw_file_serve.base_dir%</argument>
         </service>
         <service id="igorw_file_serve.response_factory.sendfile" class="%igorw_file_serve.response_factory.sendfile.class%" public="false">
-            <argument>%kernel.root_dir%</argument>
+            <argument>%igorw_file_serve.base_dir%</argument>
         </service>
     </services>
 </container>

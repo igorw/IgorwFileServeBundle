@@ -28,6 +28,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('factory')->defaultValue('php')->end()
+                ->scalarNode('base_dir')->defaultValue('%kernel.root_dir%')->end()
             ->end()
         ;
 
