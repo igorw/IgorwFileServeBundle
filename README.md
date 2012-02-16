@@ -8,7 +8,7 @@ The FileServeBundle allows you to serve files that are not publicly available, s
 
 Put the FileServeBundle into the ``vendor/bundles/Igorw`` directory:
 
-    $ git clone git://github.com/igorw/FileServeBundle.git vendor/bundles/Igorw
+    $ git clone https://github.com/igorw/IgorwFileServeBundle vendor/bundles/Igorw/FileServeBundle
 
 Register the `Igorw` namespace in your project's autoload script (app/autoload.php):
 
