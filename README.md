@@ -34,6 +34,21 @@ Use the `igorw_file_serve.response_factory` service to create a FileServe respon
 
     $response = $this->get('igorw_file_serve.response_factory')->create('../VERSION', 'text/plain');
 
+If a different returned filename is needed, you can set this via options parameter:
+
+    $real_path = '../VERSION';
+    $returned_filename = 'my_filename.txt';
+    
+    $file_options = array( 'serve_filename' => $returned_filename,
+                         );
+
+    $response = $this->get('igorw_file_serve.response_factory')
+                ->create( $filename = $real_path, 
+                          $contentType = 'application/octet-stream',
+                          $options = $file_options,
+                         );
+
+
 You can configure the factory used, for example to use a nginx XSendfile response factory:
 
     igorw_file_serve:
