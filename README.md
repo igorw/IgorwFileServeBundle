@@ -43,9 +43,9 @@ If a different returned filename is needed, you can set this via options paramet
                          );
 
     $response = $this->get('igorw_file_serve.response_factory')
-                ->create( $filename = $real_path, 
-                          $contentType = 'application/octet-stream',
-                          $options = $file_options,
+                ->create( $real_path, 
+                          'application/octet-stream',
+                          $file_options,
                          );
 
 
