@@ -7,7 +7,7 @@
     <parameters>
         <parameter key="igorw_file_serve.response_factory.php.class">Igorw\FileServeBundle\Response\PhpResponseFactory</parameter>
         <parameter key="igorw_file_serve.response_factory.sendfile.class">Igorw\FileServeBundle\Response\SendfileResponseFactory</parameter>
-		<parameter key="igorw_file_serve.response_factory.xsendfile.class">Igorw\FileServeBundle\Response\XsendfileResponseFactory</parameter>
+        <parameter key="igorw_file_serve.response_factory.xsendfile.class">Igorw\FileServeBundle\Response\XsendfileResponseFactory</parameter>
     </parameters>
 
     <services>
