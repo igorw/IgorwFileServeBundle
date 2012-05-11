@@ -59,11 +59,12 @@ You can also configure the base directory:
 
 * Incremental serving of large files
 * Nginx [XSendfile](http://wiki.nginx.org/XSendfile)
+* Apache [mod_xsendfile](https://tn123.org/mod_xsendfile/)
 
 ## Todo
 
 * Tests
 * HTTP caching
 * HTTP range requests
-* Lighttpd/Apache XSendfile
+* Lighttpd XSendfile
 * Handle PhpResponse getContent(), setContent()
