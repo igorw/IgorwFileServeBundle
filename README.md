@@ -55,6 +55,12 @@ You can also configure the base directory:
     igorw_file_serve:
         base_dir: /files/dir     # The default value is "%kernel.root_dir%"
 
+### Supported factories
+
+ * `php`
+ * `sendfile` (nginx)
+ * `xsendfile` (apache)
+
 ## Features
 
 * Incremental serving of large files
