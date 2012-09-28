@@ -36,6 +36,7 @@ abstract class AbstractResponseFactory
 
     protected function parseOptions()
     {
+        $this->options['request'] = isset($this->options['request']) ? $this->options['request'] : null;
         $this->options['serve_filename'] = isset($this->options['serve_filename']) ? $this->options['serve_filename'] : basename($this->fullFilename);
         $this->options['inline'] = isset($this->options['inline']) ? (Bool) $this->options['inline'] : true;
     }
@@ -43,6 +44,7 @@ abstract class AbstractResponseFactory
     protected function createResponse()
     {
         $response = new Response();
+
         return $response;
     }
 
@@ -50,8 +52,29 @@ abstract class AbstractResponseFactory
     {
         $response->headers->set('Cache-Control', 'public');
         $response->headers->set('Content-Type', $this->contentType);
+        $response->headers->set('Content-Disposition', $this->resolveDispositionHeader($this->options));
+    }
 
+    protected function resolveDispositionHeader(array $options)
+    {
         $disposition = $this->options['inline'] ? 'inline' : 'attachment';
-        $response->headers->set('Content-Disposition', "$disposition; filename*=UTF-8''".rawurlencode($this->options['serve_filename']));
+        $filename = $this->options['serve_filename'];
+        $request = $this->options['request'];
+
+        return "$disposition; ".$this->resolveDispositionHeaderFilename($filename, $request);
+    }
+
+    /**
+     * Algorithm inspired by phpBB3
+     */
+    protected function resolveDispositionHeaderFilename($filename, $request)
+    {
+        $userAgent = !is_null($request) ? $request->headers->get('User-Agent') : null;
+
+        if (!$userAgent || preg_match('#MSIE|Safari|Konqueror#', $userAgent)) {
+            return "filename=".rawurlencode($filename);
+        }
+
+        return "filename*=UTF-8''".rawurlencode($filename);
     }
 }

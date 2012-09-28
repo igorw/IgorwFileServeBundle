@@ -30,14 +30,16 @@ Add the FileServeBundle to your application's kernel:
 
 ## Usage
 
-Use the `igorw_file_serve.response_factory` service to create a FileServe response. The path is
-relative to the `app` directory by default.
+Use the `igorw_file_serve.response_factory` service to create a FileServe
+response. The path is relative to the `app` directory by default.
 
     $response = $this->get('igorw_file_serve.response_factory')->create('../VERSION', 'text/plain');
 
-You can also pass a set of options as the third parameter of the `create` method.
+You can also pass a set of options as the third parameter of the `create`
+method.
 
     $options = array(
+        'request' => $request,
         'serve_filename' => 'VERSION.txt',
         'inline' => false,
     );
@@ -45,7 +47,11 @@ You can also pass a set of options as the third parameter of the `create` method
     $response = $this->get('igorw_file_serve.response_factory')
         ->create('../VERSION', 'text/plain', $options);
 
-You can configure the factory used, for example to use a nginx XSendfile response factory:
+The `request` option is used to set a functional content-disposition for
+browsers. This is necessary because they do not follow RFC 2231.
+
+You can configure the factory used, for example to use a nginx XSendfile
+response factory:
 
     igorw_file_serve:
         factory: sendfile     # The default value is "php"
