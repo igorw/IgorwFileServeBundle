@@ -18,7 +18,7 @@ abstract class AbstractResponseFactory
 
     public function create($filename, $contentType = 'application/octet-stream', $options = array())
     {
-        $this->fullFilename = $this->baseDir . '/' . $filename;
+        $this->fullFilename = $this->baseDir.'/'.$filename;
         $this->contentType = $contentType;
         $this->options = $options;
 
@@ -52,6 +52,6 @@ abstract class AbstractResponseFactory
         $response->headers->set('Content-Type', $this->contentType);
 
         $disposition = $this->options['inline'] ? 'inline' : 'attachment';
-        $response->headers->set('Content-Disposition', $disposition . "; filename*=UTF-8''" . rawurlencode($this->options['serve_filename']));
+        $response->headers->set('Content-Disposition', "$disposition; filename*=UTF-8''".rawurlencode($this->options['serve_filename']));
     }
 }
