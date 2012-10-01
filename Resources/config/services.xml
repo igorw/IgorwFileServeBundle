@@ -11,14 +11,17 @@
     </parameters>
 
     <services>
-        <service id="igorw_file_serve.response_factory.php" class="%igorw_file_serve.response_factory.php.class%" public="false">
+        <service id="igorw_file_serve.response_factory.php" class="%igorw_file_serve.response_factory.php.class%" public="false" scope="request">
             <argument>%igorw_file_serve.base_dir%</argument>
+            <argument type="service" id="request" />
         </service>
-        <service id="igorw_file_serve.response_factory.sendfile" class="%igorw_file_serve.response_factory.sendfile.class%" public="false">
+        <service id="igorw_file_serve.response_factory.sendfile" class="%igorw_file_serve.response_factory.sendfile.class%" public="false" scope="request">
             <argument>%igorw_file_serve.base_dir%</argument>
+            <argument type="service" id="request" />
         </service>
-        <service id="igorw_file_serve.response_factory.xsendfile" class="%igorw_file_serve.response_factory.xsendfile.class%" public="false">
+        <service id="igorw_file_serve.response_factory.xsendfile" class="%igorw_file_serve.response_factory.xsendfile.class%" public="false" scope="request">
             <argument>%igorw_file_serve.base_dir%</argument>
+            <argument type="service" id="request" />
         </service>
     </services>
 </container>

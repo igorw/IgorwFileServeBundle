@@ -7,13 +7,15 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class AbstractResponseFactory
 {
     protected $baseDir;
+    protected $request;
     protected $fullFilename;
     protected $contentType;
     protected $options;
 
-    public function __construct($baseDir)
+    public function __construct($baseDir, $request)
     {
         $this->baseDir = $baseDir;
+        $this->request = $request;
     }
 
     public function create($filename, $contentType = 'application/octet-stream', $options = array())
@@ -36,7 +38,6 @@ abstract class AbstractResponseFactory
 
     protected function parseOptions()
     {
-        $this->options['request'] = isset($this->options['request']) ? $this->options['request'] : null;
         $this->options['serve_filename'] = isset($this->options['serve_filename']) ? $this->options['serve_filename'] : basename($this->fullFilename);
         $this->options['inline'] = isset($this->options['inline']) ? (Bool) $this->options['inline'] : true;
     }
@@ -59,17 +60,16 @@ abstract class AbstractResponseFactory
     {
         $disposition = $this->options['inline'] ? 'inline' : 'attachment';
         $filename = $this->options['serve_filename'];
-        $request = $this->options['request'];
 
-        return "$disposition; ".$this->resolveDispositionHeaderFilename($filename, $request);
+        return "$disposition; ".$this->resolveDispositionHeaderFilename($filename);
     }
 
     /**
      * Algorithm inspired by phpBB3
      */
-    protected function resolveDispositionHeaderFilename($filename, $request)
+    protected function resolveDispositionHeaderFilename($filename)
     {
-        $userAgent = !is_null($request) ? $request->headers->get('User-Agent') : null;
+        $userAgent = !is_null($this->request) ? $this->request->headers->get('User-Agent') : null;
 
         if (!$userAgent || preg_match('#MSIE|Safari|Konqueror#', $userAgent)) {
             return "filename=".rawurlencode($filename);
