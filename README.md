@@ -2,7 +2,8 @@
 
 ## About
 
-The FileServeBundle allows you to serve files that are not publicly available, such as private attachments.
+The FileServeBundle allows you to serve files that are not publicly available,
+such as private attachments.
 
 ## Installation
 
@@ -39,16 +40,12 @@ You can also pass a set of options as the third parameter of the `create`
 method.
 
     $options = array(
-        'request' => $request,
         'serve_filename' => 'VERSION.txt',
         'inline' => false,
     );
 
     $response = $this->get('igorw_file_serve.response_factory')
         ->create('../VERSION', 'text/plain', $options);
-
-The `request` option is used to set a functional content-disposition for
-browsers. This is necessary because they do not follow RFC 2231.
 
 You can configure the factory used, for example to use a nginx XSendfile
 response factory:
