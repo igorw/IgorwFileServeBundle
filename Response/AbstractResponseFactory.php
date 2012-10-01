@@ -3,6 +3,7 @@
 namespace Igorw\FileServeBundle\Response;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 abstract class AbstractResponseFactory
 {
@@ -12,7 +13,7 @@ abstract class AbstractResponseFactory
     protected $contentType;
     protected $options;
 
-    public function __construct($baseDir, $request)
+    public function __construct($baseDir, Request $request)
     {
         $this->baseDir = $baseDir;
         $this->request = $request;
@@ -69,9 +70,9 @@ abstract class AbstractResponseFactory
      */
     protected function resolveDispositionHeaderFilename($filename)
     {
-        $userAgent = !is_null($this->request) ? $this->request->headers->get('User-Agent') : null;
+        $userAgent = $this->request->headers->get('User-Agent');
 
-        if (!$userAgent || preg_match('#MSIE|Safari|Konqueror#', $userAgent)) {
+        if (preg_match('#MSIE|Safari|Konqueror#', $userAgent)) {
             return "filename=".rawurlencode($filename);
         }
 
