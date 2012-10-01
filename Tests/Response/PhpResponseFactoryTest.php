@@ -12,10 +12,9 @@ class PhpResponseFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function createShouldReturnResponseWithRequestSpecificContentDisposition($disposition, $request)
     {
-        $factory = new PhpResponseFactory(__DIR__.'/../Fixtures');
+        $factory = new PhpResponseFactory(__DIR__.'/../Fixtures', $request);
 
         $options = array(
-            'request'           => $request,
             'serve_filename'    => 'internet.zip',
             'inline'            => false,
         );
@@ -29,7 +28,6 @@ class PhpResponseFactoryTest extends \PHPUnit_Framework_TestCase
         return array(
             array('attachment; filename=internet.zip', $this->createRequestWithUserAgent('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.11 (KHTML, like Gecko) Ubuntu/12.04 Chromium/20.0.1132.47 Chrome/20.0.1132.47 Safari/536.11')),
             array('attachment; filename*=UTF-8\'\'internet.zip', $this->createRequestWithUserAgent('Yeti/1.0 (NHN Corp.; http://help.naver.com/robots/)')),
-            array('attachment; filename=internet.zip', null),
         );
     }
 
