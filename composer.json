@@ -10,7 +10,10 @@
             "email": "igor@wiedler.ch"
         }
     ],
-    "require": {
+    "require-dev": {
+        "symfony/framework-bundle": "2.*"
+    },
+    "suggest": {
         "symfony/framework-bundle": "2.*"
     },
     "autoload": {
