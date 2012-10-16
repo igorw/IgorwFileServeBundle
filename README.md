@@ -7,15 +7,13 @@ such as private attachments.
 
 ## Installation
 
-Put the FileServeBundle into the ``vendor/bundles/Igorw`` directory:
+Add the bundle to your `composer.json`:
 
-    $ git clone https://github.com/igorw/IgorwFileServeBundle vendor/bundles/Igorw/FileServeBundle
-
-Register the `Igorw` namespace in your project's autoload script (app/autoload.php):
-
-    $loader->registerNamespaces(array(
-        'Igorw'                          => __DIR__.'/../vendor/bundles',
-    ));
+    {
+        "require": {
+            "igorw/file-serve-bundle": "1.0.*@dev"
+        }
+    }
 
 Add the FileServeBundle to your application's kernel:
 
