@@ -10,6 +10,9 @@
             "email": "igor@wiedler.ch"
         }
     ],
+    "require": {
+        "symfony/http-foundation": "2.*"
+    },
     "require-dev": {
         "symfony/framework-bundle": "2.*"
     },
