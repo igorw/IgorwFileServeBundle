@@ -1,5 +1,6 @@
-* 1.0.1 (2012-xx-xx)
+* 1.0.1 (2012-10-23)
 
+  * Added support for absolute file names
   * Added hard dependency on `symfony/http-foundation`
 
 * 1.0.0 (2012-10-16)

@@ -39,6 +39,7 @@ method.
 
     $options = array(
         'serve_filename' => 'VERSION.txt',
+        'is_absolute_path' => true,             // set to true if the serve_filename is an absolute filename and not relative to base_dir
         'inline' => false,
     );
 
