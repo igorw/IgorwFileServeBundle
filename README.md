@@ -39,12 +39,16 @@ method.
 
     $options = array(
         'serve_filename' => 'VERSION.txt',
-        'is_absolute_path' => true,             // set to true if the serve_filename is an absolute filename and not relative to base_dir
+        'absolute_path' => true,
         'inline' => false,
     );
 
     $response = $this->get('igorw_file_serve.response_factory')
         ->create('../VERSION', 'text/plain', $options);
+
+* **serve_filename:** Filename the browser downloads the file as.
+* **absolute_path:** If enabled, the bundle will ignore the `base_dir` option
+  and use the provided filename as an absolute path.
 
 You can configure the factory used, for example to use a nginx XSendfile
 response factory:
