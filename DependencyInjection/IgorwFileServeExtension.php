@@ -18,6 +18,5 @@ class IgorwFileServeExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
         $container->setAlias('igorw_file_serve.response_factory', sprintf('igorw_file_serve.response_factory.%s', $config['factory']));
         $container->setParameter('igorw_file_serve.base_dir', $config['base_dir']);
-        $container->setParameter('igorw_file_serve.is_absolute_path', $config['is_absolute_path']);
     }
 }
