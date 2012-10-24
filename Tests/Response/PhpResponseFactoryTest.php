@@ -23,6 +23,40 @@ class PhpResponseFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($disposition, $response->headers->get('Content-Disposition'));
     }
 
+    /**
+     * @test
+     */
+    public function createWithRelativePath()
+    {
+        $factory = new PhpResponseFactory(__DIR__.'/../Fixtures', new Request());
+
+        $response = $factory->create('internet.txt', 'text/plain');
+
+        ob_start();
+        $response->send();
+        $output = ob_get_clean();
+
+        $this->assertSame('the internets', $output);
+    }
+
+    /**
+     * @test
+     */
+    public function createWithAbsolutePath()
+    {
+        $factory = new PhpResponseFactory(__DIR__.'/../Fixtures', new Request());
+
+        $response = $factory->create(__DIR__.'/../Fixtures/internet.txt', 'text/plain', array(
+            'absolute_path' => true
+        ));
+
+        ob_start();
+        $response->send();
+        $output = ob_get_clean();
+
+        $this->assertSame('the internets', $output);
+    }
+
     public function provideRequestsAndContentDisposition()
     {
         return array(
