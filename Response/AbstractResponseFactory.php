@@ -21,9 +21,9 @@ abstract class AbstractResponseFactory
 
     public function create($filename, $contentType = 'application/octet-stream', $options = array())
     {
+        $this->options = $options;
         $this->fullFilename = (!empty($this->options['absolute_path'])) ? $filename : $this->baseDir.'/'.$filename;
         $this->contentType = $contentType;
-        $this->options = $options;
 
         if (!is_readable($this->fullFilename)) {
             throw new \InvalidArgumentException(sprintf("Provided filename '%s' for %s is not readable.", $this->fullFilename, __METHOD__));
