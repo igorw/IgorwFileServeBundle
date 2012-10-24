@@ -36,7 +36,7 @@ class PhpResponseFactoryTest extends \PHPUnit_Framework_TestCase
         $response->send();
         $output = ob_get_clean();
 
-        $this->assertSame('the internets', $output);
+        $this->assertSame("the internets\n", $output);
     }
 
     /**
@@ -54,7 +54,7 @@ class PhpResponseFactoryTest extends \PHPUnit_Framework_TestCase
         $response->send();
         $output = ob_get_clean();
 
-        $this->assertSame('the internets', $output);
+        $this->assertSame("the internets\n", $output);
     }
 
     public function provideRequestsAndContentDisposition()
