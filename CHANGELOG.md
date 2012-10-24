@@ -1,10 +1,10 @@
 * 1.0.2 (2012-10-24)
 
-  * Bug fix: Parse options correctly
+  * Bug fix: Parse options correctly (@kbond)
 
 * 1.0.1 (2012-10-23)
 
-  * Added support for absolute file names
+  * Added support for absolute file names (@inmarelibero)
   * Added hard dependency on `symfony/http-foundation`
 
 * 1.0.0 (2012-10-16)
