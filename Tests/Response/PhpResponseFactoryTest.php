@@ -43,7 +43,7 @@ class PhpResponseFactoryTest extends \PHPUnit_Framework_TestCase
         $factory = new PhpResponseFactory(__DIR__.'/../Fixtures', new Request());
 
         $response = $factory->create(__DIR__.'/../Fixtures/internet.txt', 'text/plain', array(
-            'absolute_path' => true
+            'absolute_path' => true,
         ));
 
         ob_start();
@@ -51,6 +51,17 @@ class PhpResponseFactoryTest extends \PHPUnit_Framework_TestCase
         $output = ob_get_clean();
 
         $this->assertSame("the internets\n", $output);
+    }
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     */
+    public function createWithNonExistentPathShouldThrowException()
+    {
+        $factory = new PhpResponseFactory(__DIR__.'/../Fixtures', new Request());
+
+        $response = $factory->create(__DIR__.'/../Fixtures/missing.txt', 'text/plain');
     }
 
     public function provideRequestsAndContentDisposition()
