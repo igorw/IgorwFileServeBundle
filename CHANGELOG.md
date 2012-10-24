@@ -1,6 +1,7 @@
 * 1.0.2 (2012-10-24)
 
   * Bug fix: Parse options correctly (@kbond)
+  * Bug fix: Use `stream_copy_to_stream` instead of `readfile` to prevent memory overflow (@inmarelibero)
 
 * 1.0.1 (2012-10-23)
 

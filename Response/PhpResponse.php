@@ -15,6 +15,12 @@ class PhpResponse extends Response
 
     public function sendContent()
     {
-        readfile($this->filename);
+        $file = fopen($this->filename, 'rb');
+        $out = fopen('php://output', 'wb');
+
+        stream_copy_to_stream($file, $out);
+
+        fclose($out);
+        fclose($file);
     }
 }
