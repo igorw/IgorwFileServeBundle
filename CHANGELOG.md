@@ -1,3 +1,7 @@
+* 1.0.2 (2012-10-24)
+
+  * Bug fix: Parse options correctly
+
 * 1.0.1 (2012-10-23)
 
   * Added support for absolute file names
