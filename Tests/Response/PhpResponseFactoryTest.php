@@ -23,9 +23,7 @@ class PhpResponseFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($disposition, $response->headers->get('Content-Disposition'));
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createWithRelativePath()
     {
         $factory = new PhpResponseFactory(__DIR__.'/../Fixtures', new Request());
@@ -39,9 +37,7 @@ class PhpResponseFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame("the internets\n", $output);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createWithAbsolutePath()
     {
         $factory = new PhpResponseFactory(__DIR__.'/../Fixtures', new Request());
