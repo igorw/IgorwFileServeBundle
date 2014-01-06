@@ -29,6 +29,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('factory')->defaultValue('php')->end()
                 ->scalarNode('base_dir')->defaultValue('%kernel.root_dir%')->end()
+                ->booleanNode('skip_file_exists')->defaultFalse()->end()
             ->end()
         ;
 

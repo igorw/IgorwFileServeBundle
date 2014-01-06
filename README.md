@@ -61,6 +61,14 @@ You can also configure the base directory:
     igorw_file_serve:
         base_dir: /files/dir     # The default value is "%kernel.root_dir%"
 
+By default, this bundle does a `file_exists` check when creating a response
+object. Recent nginx versions require relative paths, in which case the paths
+inside of PHP are not actual physical paths. Use the `skip_file_exists`
+setting to disable the check.
+
+    igorw_file_serve:
+        skip_file_exists: true  # The default value is false
+
 ### Supported factories
 
  * `php`

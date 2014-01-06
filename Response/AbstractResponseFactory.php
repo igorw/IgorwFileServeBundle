@@ -8,15 +8,17 @@ use Symfony\Component\HttpFoundation\Request;
 abstract class AbstractResponseFactory
 {
     protected $baseDir;
+    protected $skipFileExists;
     protected $request;
     protected $fullFilename;
     protected $contentType;
     protected $options;
 
-    public function __construct($baseDir, Request $request)
+    public function __construct($baseDir, Request $request, $skipFileExists = false)
     {
         $this->baseDir = $baseDir;
         $this->request = $request;
+        $this->skipFileExists = $skipFileExists;
     }
 
     public function create($filename, $contentType = 'application/octet-stream', $options = array())
@@ -25,7 +27,7 @@ abstract class AbstractResponseFactory
         $this->fullFilename = (!empty($this->options['absolute_path'])) ? $filename : $this->baseDir.'/'.$filename;
         $this->contentType = $contentType;
 
-        if (!is_readable($this->fullFilename)) {
+        if (!$this->skipFileExists && !is_readable($this->fullFilename)) {
             throw new \InvalidArgumentException(sprintf("Provided filename '%s' for %s is not readable.", $this->fullFilename, __METHOD__));
         }
 
