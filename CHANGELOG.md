@@ -1,3 +1,7 @@
+* 1.0.3 (2014-01-06)
+
+  * Feature: `skip_file_exists` bundle config option (@daum)
+
 * 1.0.2 (2012-10-24)
 
   * Bug fix: Parse options correctly (@kbond)
