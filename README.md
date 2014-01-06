@@ -11,7 +11,7 @@ Add the bundle to your `composer.json`:
 
     {
         "require": {
-            "igorw/file-serve-bundle": "1.0.*"
+            "igorw/file-serve-bundle": "~1.0"
         }
     }
 
