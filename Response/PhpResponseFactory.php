@@ -17,6 +17,11 @@ class PhpResponseFactory extends AbstractResponseFactory
     {
         parent::setResponseHeaders($response);
 
-        $response->headers->set('Content-Length', filesize($this->fullFilename));
+        $fileSize = filesize($this->fullFilename);
+        $response->headers->set('Content-Length', $fileSize);
+        if (strstr($response->headers->get('content-type'), 'video')) {
+            $response->headers->set('Accept-Ranges', 'bytes');
+            $response->headers->set('Content-Range', 'bytes 0-'.($fileSize-1)."/$fileSize");
+        }
     }
 }
