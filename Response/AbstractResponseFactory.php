@@ -2,22 +2,22 @@
 
 namespace Igorw\FileServeBundle\Response;
 
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
 
 abstract class AbstractResponseFactory
 {
     protected $baseDir;
     protected $skipFileExists;
-    protected $request;
+    protected $requestStack;
     protected $fullFilename;
     protected $contentType;
     protected $options;
 
-    public function __construct($baseDir, Request $request, $skipFileExists = false)
+    public function __construct($baseDir, RequestStack $requestStack, $skipFileExists = false)
     {
         $this->baseDir = $baseDir;
-        $this->request = $request;
+        $this->requestStack = $requestStack;
         $this->skipFileExists = $skipFileExists;
     }
 
@@ -68,16 +68,41 @@ abstract class AbstractResponseFactory
     }
 
     /**
-     * Algorithm inspired by phpBB3
+     * @param string $filename
+     *
+     * @return string
      */
     protected function resolveDispositionHeaderFilename($filename)
     {
-        $userAgent = $this->request->headers->get('User-Agent');
-
-        if (preg_match('#MSIE|Safari|Konqueror#', $userAgent)) {
-            return "filename=".rawurlencode($filename);
+        if ($this->clientSupportsUtf8Filename()) {
+            $dispositionHeaderFilename = "filename*=UTF-8''".rawurlencode($filename);
+        } else {
+            $dispositionHeaderFilename = "filename=".rawurlencode($filename);
         }
 
-        return "filename*=UTF-8''".rawurlencode($filename);
+        return $dispositionHeaderFilename;
+    }
+
+    /**
+     * Algorithm inspired by phpBB3
+     *
+     * @throws \LogicException
+     *
+     * @return bool
+     */
+    private function clientSupportsUtf8Filename()
+    {
+        $request = $this->requestStack->getCurrentRequest();
+        if (is_null($request)) {
+            throw new \LogicException('Current request is not available');
+        }
+
+        $userAgent = $request->headers->get('User-Agent');
+
+        if (preg_match('#MSIE|Safari|Konqueror#', $userAgent)) {
+            return false;
+        }
+
+        return true;
     }
 }
