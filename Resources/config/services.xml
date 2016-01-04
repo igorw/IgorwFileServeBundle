@@ -11,19 +11,19 @@
     </parameters>
 
     <services>
-        <service id="igorw_file_serve.response_factory.php" class="%igorw_file_serve.response_factory.php.class%" public="false" scope="request">
+        <service id="igorw_file_serve.response_factory.php" class="%igorw_file_serve.response_factory.php.class%" public="false">
             <argument>%igorw_file_serve.base_dir%</argument>
-            <argument type="service" id="request" />
+            <argument type="service" id="request_stack" />
             <argument>%igorw_file_serve.skip_file_exists%</argument>
         </service>
-        <service id="igorw_file_serve.response_factory.sendfile" class="%igorw_file_serve.response_factory.sendfile.class%" public="false" scope="request">
+        <service id="igorw_file_serve.response_factory.sendfile" class="%igorw_file_serve.response_factory.sendfile.class%" public="false">
             <argument>%igorw_file_serve.base_dir%</argument>
-            <argument type="service" id="request" />
+            <argument type="service" id="request_stack" />
             <argument>%igorw_file_serve.skip_file_exists%</argument>
         </service>
-        <service id="igorw_file_serve.response_factory.xsendfile" class="%igorw_file_serve.response_factory.xsendfile.class%" public="false" scope="request">
+        <service id="igorw_file_serve.response_factory.xsendfile" class="%igorw_file_serve.response_factory.xsendfile.class%" public="false">
             <argument>%igorw_file_serve.base_dir%</argument>
-            <argument type="service" id="request" />
+            <argument type="service" id="request_stack" />
             <argument>%igorw_file_serve.skip_file_exists%</argument>
         </service>
     </services>
